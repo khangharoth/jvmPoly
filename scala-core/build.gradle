@@ -1,0 +1,29 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+dependencies
+        {
+            compile group: 'org.scala-lang', name: 'scala-library', version: '2.11.12'
+        }
+
+apply plugin: 'scala'
+
+sourceSets {
+    main {
+        scala { srcDirs = ["src/main/scala", "src/main/java"] }
+
+        java { srcDirs = [] }
+    }
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = ["-target:jvm-1.8"]
+}
+
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
+task uberJar(type: ShadowJar) {
+    classifier = 'all'
+    from sourceSets.main.output
+    configurations = [project.configurations.runtime]
+}

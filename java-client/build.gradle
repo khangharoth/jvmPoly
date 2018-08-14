@@ -1,0 +1,8 @@
+dependencies {
+    compile project(':scala-core')
+
+}
+test {
+    useTestNG()
+    dependsOn ":scala-core:uberJar"
+}
