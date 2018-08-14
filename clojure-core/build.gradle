@@ -1,0 +1,14 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+dependencies {
+    compile 'org.clojure:clojure:1.8.0'
+}
+
+apply plugin: 'gradle-clojure.clojure'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+task uberJar(type: ShadowJar) {
+    classifier = 'all'
+    from sourceSets.main.output
+    configurations = [project.configurations.runtime]
+}
