@@ -4,6 +4,12 @@ dependencies {
     compile 'org.clojure:clojure:1.8.0'
 }
 
+sourceSets {
+    main {
+        java { srcDirs = ["src/main/clojure", "src/main/java"] }
+    }
+}
+
 apply plugin: 'gradle-clojure.clojure'
 apply plugin: 'com.github.johnrengelman.shadow'
 

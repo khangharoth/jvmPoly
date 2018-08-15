@@ -18,7 +18,11 @@ allprojects {
     repositories {
         maven { url "http://repo.spring.io/plugins-release/" }
     }
-    configurations { testCompile.extendsFrom compileOnly }
-
+    test {
+        testLogging {
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+        }
+        dependsOn 'cleanTest'
+    }
 
 }
