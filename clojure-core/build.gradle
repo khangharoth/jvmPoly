@@ -1,12 +1,16 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 dependencies {
-    compile 'org.clojure:clojure:1.8.0'
+    compile 'org.clojure:clojure:1.9.0'
 }
 
 sourceSets {
     main {
-        java { srcDirs = ["src/main/clojure", "src/main/java"] }
+
+
+        resources {
+            srcDirs = ["src/main/clojure"]
+        }
     }
 }
 
