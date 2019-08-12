@@ -18,13 +18,18 @@ public class QuickSort {
                 .filter(integer -> integer < pivot)
                 .collect(toList());
 
+        List<Integer> pivotList = elements.stream()
+                .filter(integer -> integer.equals(pivot))
+                .collect(toList());
+
+
         List<Integer> higher = elements.stream()
                 .filter(integer -> integer > pivot)
                 .collect(toList());
 
         List<Integer> sortedList = new ArrayList<>();
         sortedList.addAll(sort(lesser));
-        sortedList.add(pivot);
+        sortedList.addAll(pivotList);
         sortedList.addAll(sort(higher));
         return sortedList;
     }

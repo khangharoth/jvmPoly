@@ -14,6 +14,7 @@ public class QuickSortTest {
     public void shouldSortTwoElementList() throws Exception {
         List<Integer> integers = Seq.of(4, 2, 3, 2).toList();
         List<Integer> sortedList = new QuickSort().sort(integers);
+        assertTrue(sortedList.size() == integers.size());
         assertTrue(sortedList.stream().sorted().collect(Collectors.toList()).equals(sortedList));
     }
 
@@ -21,7 +22,7 @@ public class QuickSortTest {
     public void shouldBeAbleToSortGivenList(@ForAll("integerLists") List<Integer> randomList) throws Exception {
         System.out.println(randomList);
         List<Integer> sortedList = new QuickSort().sort(randomList);
-//        assertTrue(sortedList.size()==randomList.size());
+        assertTrue(sortedList.size() == randomList.size());
         assertTrue(sortedList.stream().sorted().collect(Collectors.toList()).equals(sortedList));
     }
 
