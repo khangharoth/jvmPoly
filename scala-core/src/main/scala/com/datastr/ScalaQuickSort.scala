@@ -1,35 +1,23 @@
 package com.datastr
 
-import java.util
-import java.util.function.Predicate
-import java.util.stream.Collectors.toList
+import scala.collection.JavaConversions._
+import scala.collection.mutable.ListBuffer
 
 
 object ScalaQuickSort {
-  def sort(elements: util.List[Integer]): util.List[Integer] = {
-    if (elements.size == 0) {
-      return elements
+  def sort(elements: List[Integer]): List[Integer] = {
+    if (elements.isEmpty) {
+      return List[Integer]()
     }
     val pivot: java.lang.Integer = elements.get(0)
-    val sortedList: util.List[Integer] = new util.ArrayList[Integer]()
+    val sortedList: ListBuffer[Integer] = ListBuffer[Integer]()
 
 
-    sortedList.addAll(sort(filter(elements, new Predicate[Integer] {
-      override def test(t: Integer): Boolean = t < pivot
-    })))
+    sortedList.addAll(sort(elements.filter(_ < pivot)))
+    sortedList.addAll(elements.filter(_ == pivot))
+    sortedList.addAll(sort(elements.filter(_ > pivot)))
 
-    sortedList.addAll(filter(elements, new Predicate[Integer] {
-      override def test(t: Integer): Boolean = t == pivot
-    }))
-
-    sortedList.addAll(sort(filter(elements, new Predicate[Integer] {
-      override def test(t: Integer): Boolean = t > pivot
-    })))
-
-    sortedList
+    sortedList.toList
   }
 
-  private def filter(elements: util.List[Integer],
-                     integerPredicate: Predicate[Integer]): util.List[Integer] =
-    elements.stream().filter(integerPredicate).collect(toList())
 }
