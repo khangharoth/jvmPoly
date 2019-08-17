@@ -12,9 +12,20 @@ object ScalaQuickSort {
     }
     val pivot: java.lang.Integer = elements.get(0)
     val sortedList: util.List[Integer] = new util.ArrayList[Integer]()
-    sortedList.addAll(sort(filter(elements, (integer) => integer < pivot)))
-    sortedList.addAll(filter(elements, (integer) => integer == pivot))
-    sortedList.addAll(sort(filter(elements, (integer) => integer > pivot)))
+
+
+    sortedList.addAll(sort(filter(elements, new Predicate[Integer] {
+      override def test(t: Integer): Boolean = t < pivot
+    })))
+
+    sortedList.addAll(filter(elements, new Predicate[Integer] {
+      override def test(t: Integer): Boolean = t == pivot
+    }))
+
+    sortedList.addAll(sort(filter(elements, new Predicate[Integer] {
+      override def test(t: Integer): Boolean = t > pivot
+    })))
+
     sortedList
   }
 
