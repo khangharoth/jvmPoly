@@ -14,7 +14,7 @@ import static org.testng.Assert.assertTrue;
 public class ScalaQuickSortTest {
 
     @Test
-    public void shouldSortTwoElementList() {
+    public void shouldSortFourElementList() {
         List<Integer> integers = Seq.of(4, 2, 3, 2).toList();
         List<Integer> sortedList = ScalaQuickSort.sortJava(integers);
         assertEquals(sortedList.size(), integers.size());

@@ -11,7 +11,7 @@ import static org.testng.Assert.assertTrue;
 
 public class QuickSortTest {
     @Test
-    public void shouldSortTwoElementList() throws Exception {
+    public void shouldSortFourElementList() throws Exception {
         List<Integer> integers = Seq.of(4, 2, 3, 2).toList();
         List<Integer> sortedList = new QuickSort().sort(integers);
         assertTrue(sortedList.size() == integers.size());
