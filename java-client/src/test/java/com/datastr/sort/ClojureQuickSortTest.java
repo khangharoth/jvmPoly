@@ -7,6 +7,7 @@ import org.jooq.lambda.Seq;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static org.testng.Assert.assertEquals;
@@ -26,6 +27,7 @@ public class ClojureQuickSortTest {
         LazySeq sortedSeq = (LazySeq) quickSort.invoke(integers);
         assertEquals(sortedSeq.size(), integers.size());
 
+        sortedSeq.stream().forEach(System.out::println);
         assertTrue(sortedSeq.stream().sorted().collect(Collectors.toList()).equals(sortedSeq));
     }
 }
