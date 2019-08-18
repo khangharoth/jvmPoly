@@ -1,10 +1,16 @@
 package com.datastr
 
+import java.util
+
 import scala.collection.JavaConversions._
 import scala.collection.mutable.ListBuffer
 
 
 object ScalaQuickSort {
+  def sortJava(elements: util.List[Integer]): util.List[Integer] = {
+    return sort(elements.toList)
+  }
+
   def sort(elements: List[Integer]): List[Integer] = {
     if (elements.isEmpty) {
       return List[Integer]()
