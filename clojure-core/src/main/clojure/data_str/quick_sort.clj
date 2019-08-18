@@ -15,12 +15,6 @@
   )
 
 (defn quick-sort [x]
-  (println x)
   (sort-parts (first x) x))
 
 
-
-(defn rand-ints [n]
-  (take n (repeatedly #(rand-int n))))
-
-(println (quick-sort (rand-ints 20)))
