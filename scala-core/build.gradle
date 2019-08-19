@@ -3,6 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 dependencies {
     compile group: 'org.scala-lang', name: 'scala-library', version: '2.11.12'
     testCompile group: 'org.scalatest', name: 'scalatest_2.11', version: '3.0.8'
+    testCompile group: 'org.scalacheck', name: 'scalacheck_2.12', version: '1.13.5'
 }
 
 apply plugin: 'scala'
