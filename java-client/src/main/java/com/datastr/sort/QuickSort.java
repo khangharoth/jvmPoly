@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
-public class QuickSort {
+public class QuickSort implements SortAlgo {
 
     public List<Integer> sort(List<Integer> elements) {
         if (elements.size() == 0) {

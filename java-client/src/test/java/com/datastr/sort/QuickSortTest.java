@@ -7,23 +7,24 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class QuickSortTest {
-    @Test
-    public void shouldSortFourElementList() throws Exception {
-        List<Integer> integers = Seq.of(4, 2, 3, 2).toList();
-        List<Integer> sortedList = new QuickSort().sort(integers);
-        assertTrue(sortedList.size() == integers.size());
-        assertTrue(sortedList.stream().sorted().collect(Collectors.toList()).equals(sortedList));
+
+    @Property(shrinking = ShrinkingMode.FULL)
+    public void shouldBeAbleToSortByQuickSort(@ForAll("integerLists") List<Integer> randomList) {
+        List<Integer> sortedList = new QuickSort().sort(randomList);
+        assertEquals(sortedList.size(), randomList.size());
+        assertEquals(sortedList, randomList.stream().sorted().collect(Collectors.toList()));
     }
 
     @Property(shrinking = ShrinkingMode.FULL)
-    public void shouldBeAbleToSortGivenList(@ForAll("integerLists") List<Integer> randomList) throws Exception {
-        System.out.println(randomList);
-        List<Integer> sortedList = new QuickSort().sort(randomList);
-        assertTrue(sortedList.size() == randomList.size());
-        assertTrue(sortedList.stream().sorted().collect(Collectors.toList()).equals(sortedList));
+    @Disabled
+    public void shouldBeAbleToSortBySelectionSort(@ForAll("integerLists") List<Integer> randomList) {
+        List<Integer> sortedList = new SelectionSort().sort(randomList);
+        assertEquals(sortedList.size(), randomList.size());
+        assertEquals(sortedList, randomList.stream().sorted().collect(Collectors.toList()));
     }
 
     @Provide

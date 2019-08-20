@@ -6,7 +6,7 @@ import org.scalatest.{BeforeAndAfterAll, FunSuite, Matchers}
 import org.scalatestplus.scalacheck.Checkers.check
 
 class ScalaQuickSortPropSpec extends FunSuite with Matchers with BeforeAndAfterAll {
-  test("should be") {
+  test("should have sorted elements in list ") {
 
     check((a: List[Int]) => {
       println(a)
