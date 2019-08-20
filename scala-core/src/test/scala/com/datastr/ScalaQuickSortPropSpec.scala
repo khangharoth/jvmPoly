@@ -8,9 +8,12 @@ import org.scalatestplus.scalacheck.Checkers.check
 class ScalaQuickSortPropSpec extends FunSuite with Matchers with BeforeAndAfterAll {
   test("should be") {
 
-    check((a: List[Int], b: List[Int]) => {
-      println(a + " : " + b)
-      a.size + b.size == (a ::: b).size
+    check((a: List[Int]) => {
+      println(a)
+
+      val numbers = a.map(x => new Integer(x.toString))
+      val sortedList: List[Integer] = ScalaQuickSort.sort(numbers)
+      numbers.sorted == sortedList
     })
   }
 }
