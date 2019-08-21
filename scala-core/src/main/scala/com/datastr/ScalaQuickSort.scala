@@ -6,9 +6,9 @@ import scala.collection.JavaConversions._
 import scala.collection.mutable.ListBuffer
 
 
-object ScalaQuickSort {
+object ScalaQuickSort extends ScalaSortAlgo {
   def sortJava(elements: util.List[Integer]): util.List[Integer] = {
-    return sort(elements.toList)
+    sort(elements.toList)
   }
 
   def sort(elements: List[Integer]): List[Integer] = {
