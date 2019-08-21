@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class ScalaSortClientTest {
 
@@ -23,15 +22,15 @@ public class ScalaSortClientTest {
     }
 
     @Property(shrinking = ShrinkingMode.FULL)
-    public void shouldBeAbleToSortByQuickSort(@ForAll("integerLists") List<Integer> randomList) throws Exception {
-        List<Integer> sortedList = new QuickSort().sort(randomList);
+    public void byQuickSort(@ForAll("integerLists") List<Integer> randomList) {
+        List<Integer> sortedList = ScalaQuickSort.sortJava(randomList);
         assertEquals(sortedList.size(), randomList.size());
         assertEquals(sortedList, randomList.stream().sorted().collect(Collectors.toList()));
     }
 
     @Property(shrinking = ShrinkingMode.FULL)
-    public void shouldBeAbleToSortBySelectionSort(@ForAll("integerLists") List<Integer> randomList) throws Exception {
-        List<Integer> sortedList = new SelectionSort().sort(randomList);
+    public void bySelectionSort(@ForAll("integerLists") List<Integer> randomList) {
+        List<Integer> sortedList = ScalaSelectionSort.sortJava(randomList);
         assertEquals(sortedList.size(), randomList.size());
         assertEquals(sortedList, randomList.stream().sorted().collect(Collectors.toList()));
     }
