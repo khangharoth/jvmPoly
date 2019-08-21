@@ -1,7 +1,5 @@
 package com.datastr.sort;
 
-import com.datastr.ScalaQuickSort;
-import com.datastr.ScalaSelectionSort;
 import net.jqwik.api.*;
 import org.jooq.lambda.Seq;
 import org.testng.annotations.Test;

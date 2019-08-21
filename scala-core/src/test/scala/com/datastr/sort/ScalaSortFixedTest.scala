@@ -1,4 +1,4 @@
-package com.datastr
+package com.datastr.sort
 
 import org.scalatest.{BeforeAndAfterAll, FunSuite, Matchers}
 

@@ -1,4 +1,4 @@
-package com.datastr
+package com.datastr.sort
 
 import org.scalacheck.Arbitrary._
 import org.scalacheck.Prop._
