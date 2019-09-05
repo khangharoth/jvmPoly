@@ -8,7 +8,7 @@
 (deftest quick-sort-test
   (is (.equals (list 1 2 4 5) (quick-sort (list 2 4 1 5)))))
 
-(deftest quick-sort-siple-test
+(deftest quick-sort-simple-test
   (println (quick-sort (rand-ints 20)))
   (is (.equals (list 1 2 4 5) (quick-sort (list 2 4 1 5)))))
 
