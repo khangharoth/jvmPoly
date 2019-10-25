@@ -2,5 +2,5 @@ rootProject.name = 'jvmPoly'
 include 'scala-core'
 include 'clojure-core'
 include 'java-client'
-
+include 'kotlin-core'
 
