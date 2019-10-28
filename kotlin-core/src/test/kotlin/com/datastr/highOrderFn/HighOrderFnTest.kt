@@ -1,6 +1,5 @@
-package om.datastr.highOrderFn
+package com.datastr.highOrderFn
 
-import com.datastr.highOrderFn.applyTwice;
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 
