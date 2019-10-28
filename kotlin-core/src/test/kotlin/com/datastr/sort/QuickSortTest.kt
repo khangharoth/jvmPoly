@@ -1,5 +1,6 @@
 package com.datastr.sort
 
+import junit.framework.Assert.assertEquals
 import org.junit.Test
 
 class QuickSortTest {
@@ -7,7 +8,8 @@ class QuickSortTest {
     fun `doQuicksort`() {
         val numbers = listOf(3, 5, 1, 2)
 
-        println(quickSort(numbers))
+
+        assertEquals(numbers.sorted(), quickSort(numbers))
     }
 }
 
