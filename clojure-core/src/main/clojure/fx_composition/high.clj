@@ -2,5 +2,8 @@
 
 
 (defn applyTwice [fx x]
-  (fx (fx x))
-  )
+  (fx (fx x)))
+
+
+(defn addThree [x]
+  (+ x 3))
