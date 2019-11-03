@@ -7,6 +7,8 @@ public interface ElementFinder {
 
     <T> T third(Iterable<T> items);
 
+    <T> T nth(int n, Iterable<T> items);
+
     <T> Iterable<T> rest(Iterable<T> items);
 
 

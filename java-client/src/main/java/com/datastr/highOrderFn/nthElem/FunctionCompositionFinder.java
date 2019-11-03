@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-public class NthElementFinder {
+public class FunctionCompositionFinder implements ElementFinder {
     public <T> T first(Iterable<T> items) {
-        return this.<T>firstFunction().apply(items);
+        return this.<T>firstFunction()
+                .apply(items);
     }
 
     public <T> T second(Iterable<T> items) {
-        return this.<T>firstFunction().compose(this.rest()).apply(items);
+        return this.<T>firstFunction()
+                .compose(this.rest())
+                .apply(items);
     }
 
     public <T> T third(Iterable<T> items) {
@@ -22,10 +25,15 @@ public class NthElementFinder {
                 .apply(items);
     }
 
+    @Override
+    public <T> T nth(int n, Iterable<T> items) {
+        return this.<T>nth(n).apply(items);
+    }
+
+
     public <T> Iterable<T> rest(Iterable<T> items) {
         return this.<T>rest().apply(items);
     }
-
 
     private <T> Function<Iterable<T>, T> firstFunction() {
         return e -> e.iterator().next();
@@ -38,7 +46,7 @@ public class NthElementFinder {
         };
     }
 
-    public <T> Function<Iterable<T>, T> nth(int n) {
+    private <T> Function<Iterable<T>, T> nth(int n) {
         Function<Iterable<T>, T> baseFn = this.firstFunction();
 
         return IntStream.range(0, n)
