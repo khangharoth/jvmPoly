@@ -1,6 +1,7 @@
 package com.datastr.highOrderFn.nthElem;
 
 import com.google.common.collect.Lists;
+import org.jooq.lambda.Seq;
 
 import java.util.ArrayList;
 import java.util.function.Function;
@@ -10,6 +11,11 @@ public class FunctionCompositionFinder implements ElementFinder {
     public <T> T first(Iterable<T> items) {
         return this.<T>firstFunction()
                 .apply(items);
+    }
+
+    @Override
+    public <T> T first(Seq<T> items) {
+        return items.duplicate().v1().splitAtHead().v1.orElse(null);
     }
 
     public <T> T second(Iterable<T> items) {
