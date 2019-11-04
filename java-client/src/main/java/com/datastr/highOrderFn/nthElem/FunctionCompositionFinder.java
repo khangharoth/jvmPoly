@@ -13,14 +13,14 @@ public class FunctionCompositionFinder implements ElementFinder {
 
     public <T> T second(Seq<T> items) {
         return this.<T>firstFunction()
-                .compose(this.rest())
+                .compose(this.restFunction())
                 .apply(items);
     }
 
     public <T> T third(Seq<T> items) {
         return this.<T>firstFunction()
-                .compose(this.rest())
-                .compose(this.rest())
+                .compose(this.restFunction())
+                .compose(this.restFunction())
                 .apply(items);
     }
 
@@ -31,14 +31,14 @@ public class FunctionCompositionFinder implements ElementFinder {
 
 
     public <T> Seq<T> rest(Seq<T> items) {
-        return this.<T>rest().apply(items);
+        return this.<T>restFunction().apply(items);
     }
 
     private <T> Function<Seq<T>, T> firstFunction() {
         return e -> e.iterator().next();
     }
 
-    private <T> Function<Seq<T>, Seq<T>> rest() {
+    private <T> Function<Seq<T>, Seq<T>> restFunction() {
         return e -> e.splitAtHead().v2;
     }
 
@@ -47,7 +47,7 @@ public class FunctionCompositionFinder implements ElementFinder {
 
         return IntStream.range(0, n)
                 .boxed()
-                .reduce(baseFn, (listTFunction, o) -> listTFunction.compose(this.rest()),
-                        (listTFunction, listTFunction2) -> listTFunction.compose(this.rest()));
+                .reduce(baseFn, (listTFunction, o) -> listTFunction.compose(this.restFunction()),
+                        (listTFunction, listTFunction2) -> listTFunction.compose(this.restFunction()));
     }
 }
