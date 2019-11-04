@@ -1,30 +1,23 @@
 package com.datastr.highOrderFn.nthElem;
 
-import com.google.common.collect.Lists;
 import org.jooq.lambda.Seq;
 
-import java.util.ArrayList;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
 public class FunctionCompositionFinder implements ElementFinder {
-    public <T> T first(Iterable<T> items) {
-        return this.<T>firstFunction()
-                .apply(items);
-    }
-
     @Override
     public <T> T first(Seq<T> items) {
-        return items.duplicate().v1().splitAtHead().v1.orElse(null);
+        return items.iterator().next();
     }
 
-    public <T> T second(Iterable<T> items) {
+    public <T> T second(Seq<T> items) {
         return this.<T>firstFunction()
                 .compose(this.rest())
                 .apply(items);
     }
 
-    public <T> T third(Iterable<T> items) {
+    public <T> T third(Seq<T> items) {
         return this.<T>firstFunction()
                 .compose(this.rest())
                 .compose(this.rest())
@@ -32,28 +25,25 @@ public class FunctionCompositionFinder implements ElementFinder {
     }
 
     @Override
-    public <T> T nth(int n, Iterable<T> items) {
+    public <T> T nth(int n, Seq<T> items) {
         return this.<T>nth(n).apply(items);
     }
 
 
-    public <T> Iterable<T> rest(Iterable<T> items) {
+    public <T> Seq<T> rest(Seq<T> items) {
         return this.<T>rest().apply(items);
     }
 
-    private <T> Function<Iterable<T>, T> firstFunction() {
+    private <T> Function<Seq<T>, T> firstFunction() {
         return e -> e.iterator().next();
     }
 
-    private <T> Function<Iterable<T>, Iterable<T>> rest() {
-        return e -> {
-            ArrayList<T> list = Lists.newArrayList(e);
-            return list.subList(1, list.size());
-        };
+    private <T> Function<Seq<T>, Seq<T>> rest() {
+        return e -> e.splitAtHead().v2;
     }
 
-    private <T> Function<Iterable<T>, T> nth(int n) {
-        Function<Iterable<T>, T> baseFn = this.firstFunction();
+    private <T> Function<Seq<T>, T> nth(int n) {
+        Function<Seq<T>, T> baseFn = this.firstFunction();
 
         return IntStream.range(0, n)
                 .boxed()

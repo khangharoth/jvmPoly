@@ -3,17 +3,16 @@ package com.datastr.highOrderFn.nthElem;
 import org.jooq.lambda.Seq;
 
 public interface ElementFinder {
-    <T> T first(Iterable<T> items);
 
     <T> T first(Seq<T> items);
 
-    <T> T second(Iterable<T> items);
+    <T> T second(Seq<T> items);
 
-    <T> T third(Iterable<T> items);
+    <T> T third(Seq<T> items);
 
-    <T> T nth(int n, Iterable<T> items);
+    <T> T nth(int n, Seq<T> items);
 
-    <T> Iterable<T> rest(Iterable<T> items);
+    <T> Seq<T> rest(Seq<T> items);
 
 
 }

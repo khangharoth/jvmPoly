@@ -1,36 +1,28 @@
 package com.datastr.highOrderFn.nthElem;
 
-import com.google.common.collect.Lists;
 import org.jooq.lambda.Seq;
-
-import java.util.ArrayList;
 
 public class MethodChainingFinder implements ElementFinder {
 
-    public <T> T first(Iterable<T> items) {
+    @Override
+    public <T> T first(Seq<T> items) {
         return items.iterator().next();
     }
 
-    @Override
-    public <T> T first(Seq<T> items) {
-        return items.duplicate().v1().splitAtHead().v1.orElse(null);
-    }
-
-    public <T> T second(Iterable<T> items) {
+    public <T> T second(Seq<T> items) {
         return this.first(this.rest(items));
     }
 
-    public <T> T third(Iterable<T> items) {
+    public <T> T third(Seq<T> items) {
         return this.first(this.rest(this.rest(items)));
     }
 
-    public <T> T nth(int n, Iterable<T> items) {
+    public <T> T nth(int n, Seq<T> items) {
         return null;
     }
 
-    public <T> Iterable<T> rest(Iterable<T> items) {
-        ArrayList<T> list = Lists.newArrayList(items);
-        return list.subList(1, list.size());
+    public <T> Seq<T> rest(Seq<T> items) {
+        return items.splitAtHead().v2;
     }
 
 }
