@@ -1,0 +1,1 @@
+https://codereview.stackexchange.com/questions/189426/linked-list-implementation-in-clojure

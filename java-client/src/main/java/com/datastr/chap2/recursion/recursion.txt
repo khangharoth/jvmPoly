@@ -1,0 +1,10 @@
+Recursion is useful technique borrowed from mathematics.
+
+
+recursion vs iteration : recursion is easier to reason about but may take more space.
+generally iterative solutions are more efficient than recursion .
+
+Any problem that can be solved recursively can also be solved iteratively.
+For some problems there are no obvious iterative algorithms.
+
+Backtracking is a method of exhaustive search using divide and conquer.
