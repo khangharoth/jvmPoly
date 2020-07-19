@@ -16,7 +16,7 @@ allprojects {
     targetCompatibility = 1.8
 
     repositories {
-        maven { url "http://repo.spring.io/plugins-release/" }
+        jcenter()
     }
     test {
         testLogging {
