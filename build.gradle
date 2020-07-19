@@ -17,6 +17,7 @@ allprojects {
 
     repositories {
         jcenter()
+        maven { url "http://repo.spring.io/plugins-release/" }
 
     }
     test {
