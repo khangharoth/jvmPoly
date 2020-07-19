@@ -1,5 +1,9 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
+plugins {
+    id "gradle-clojure.clojure"
+}
+
 dependencies {
     compile 'org.clojure:clojure:1.9.0'
     testCompile group: 'org.clojure', name: 'test.check', version: '0.10.0'
