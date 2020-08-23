@@ -2,10 +2,21 @@ package com.packBin;
 
 import clojure.java.api.Clojure;
 import clojure.lang.IFn;
+import clojure.lang.Keyword;
 import clojure.lang.PersistentArrayMap;
 import clojure.lang.PersistentVector;
 import org.testng.annotations.Test;
+import scala.Int;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static clojure.lang.Keyword.find;
 import static org.testng.Assert.assertEquals;
 
 
@@ -18,11 +29,25 @@ public class ClojurePackBinTest {
 
         IFn packbins = Clojure.var("com.pack-bin.pack-bin", "pack-bins");
 
-        PersistentVector bins = bins();
+        List<Map<Keyword, Integer>> bins = bins();
         PersistentArrayMap containers = containers();
 
-        PersistentArrayMap result = (PersistentArrayMap) packbins.invoke(containers, bins);
-        assertEquals(result.size(), 3);
+        Map<Keyword, Map<Keyword, List<Map<Keyword, Integer>>>> packedContainers = (Map<Keyword, Map<Keyword, List<Map<Keyword, Integer>>>>) packbins.invoke(containers, bins);
+
+        Integer binsCombinedSize = bins.stream()
+                .map(map -> map.get(find("size")))
+                .reduce(0, Integer::sum);
+
+        Integer packedContainerContentSize = packedContainers.values()
+                .stream()
+                .map(a -> a.get(find("contents"))
+                        .stream()
+                        .map(c -> c.get(find("size")))
+                        .reduce(0, Integer::sum))
+                .reduce(0, Integer::sum);
+
+        assertEquals(packedContainerContentSize, binsCombinedSize);
+
     }
 
     private PersistentArrayMap containers() {
