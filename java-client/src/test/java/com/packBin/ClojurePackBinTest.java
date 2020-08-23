@@ -6,15 +6,9 @@ import clojure.lang.Keyword;
 import clojure.lang.PersistentArrayMap;
 import clojure.lang.PersistentVector;
 import org.testng.annotations.Test;
-import scala.Int;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.BinaryOperator;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static clojure.lang.Keyword.find;
 import static org.testng.Assert.assertEquals;
