@@ -29,7 +29,7 @@ public class ClojurePackBinTest {
         Map<Keyword, Map<Keyword, List<Map<Keyword, Integer>>>> packedContainers = (Map<Keyword, Map<Keyword, List<Map<Keyword, Integer>>>>) packbins.invoke(containers, bins);
 
         Integer binsCombinedSize = bins.stream()
-                .map(map -> map.get(find("size")))
+                .map(a -> a.get(find("size")))
                 .reduce(0, Integer::sum);
 
         Integer packedContainerContentSize = packedContainers.values()
